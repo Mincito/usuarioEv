@@ -2,6 +2,8 @@ package cl.duoc.usuarioev.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,39 +32,68 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuarios> getAllUsuarios() {
-        return this.usuarioService.getAllUsuarios();
+    public ResponseEntity<List<Usuarios>> getAllUsuarios() {
+        List<Usuarios> usuarios = this.usuarioService.getAllUsuarios();
+        return ResponseEntity.ok(usuarios);
     }
 
     @PostMapping
-    public Usuarios guardarUsuario(@Valid @RequestBody CreateUsuarioRequest request) {
+    public ResponseEntity<Usuarios> guardarUsuario(@Valid @RequestBody CreateUsuarioRequest request) {
         Usuarios usuario = UsuarioMapper.toModel(request);
-        return this.usuarioService.guardarUsuario(usuario);
+        Usuarios usuarioGuardado = this.usuarioService.guardarUsuario(usuario);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
     }
 
     @GetMapping("/{id}")
-    public Usuarios getById(@PathVariable Integer id) {
-        return this.usuarioService.getById(id);
+    public ResponseEntity<Usuarios> getById(@PathVariable Integer id) {
+        Usuarios usuario = this.usuarioService.getById(id);
+
+        if (usuario == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(usuario);
     }
 
     @PutMapping("/{id}")
-    public Usuarios updateUsuario(@PathVariable Integer id, @Valid @RequestBody UpdateUsuarioRequest request) {
+    public ResponseEntity<Usuarios> updateUsuario(
+            @PathVariable Integer id,
+            @Valid @RequestBody UpdateUsuarioRequest request) {
+
+        Usuarios usuarioExistente = this.usuarioService.getById(id);
+
+        if (usuarioExistente == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         Usuarios usuario = UsuarioMapper.toModel(id, request);
-        return this.usuarioService.updateUsuario(usuario);
+        Usuarios usuarioActualizado = this.usuarioService.updateUsuario(usuario);
+
+        return ResponseEntity.ok(usuarioActualizado);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUsuario(@PathVariable int id) {
-        return this.usuarioService.deleteUsuario(id);
+    public ResponseEntity<Void> deleteUsuario(@PathVariable int id) {
+        Usuarios usuario = this.usuarioService.getById(id);
+
+        if (usuario == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        this.usuarioService.deleteUsuario(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/total")
-    public int totalUsuarios() {
-        return this.usuarioService.totalUsuarios();
+    public ResponseEntity<Integer> totalUsuarios() {
+        int total = this.usuarioService.totalUsuarios();
+        return ResponseEntity.ok(total);
     }
 
     @GetMapping("/rol/{rol}")
-    public List<Usuarios> obtenerPorRol(@PathVariable String rol) {
-        return this.usuarioService.obtenerPorRol(rol);
+    public ResponseEntity<List<Usuarios>> obtenerPorRol(@PathVariable String rol) {
+        List<Usuarios> usuarios = this.usuarioService.obtenerPorRol(rol);
+        return ResponseEntity.ok(usuarios);
     }
 }
