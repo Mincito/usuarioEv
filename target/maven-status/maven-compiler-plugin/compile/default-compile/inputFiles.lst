@@ -1,0 +1,10 @@
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\controller\UsuarioController.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\dto\CreateUsuarioRequest.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\dto\UpdateUsuarioRequest.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\exception\GlobalExceptionHandler.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\exception\ResourceNotFoundException.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\mapper\UsuarioMapper.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\model\Usuarios.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\repository\UsuarioRepository.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\service\UsuarioService.java
+C:\Users\pv-alumno\Documents\so\usuarioEv\src\main\java\cl\duoc\usuarioev\UsuarioevApplication.java
