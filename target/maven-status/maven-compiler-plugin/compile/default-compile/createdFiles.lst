@@ -1,0 +1,10 @@
+cl\duoc\usuarioev\service\UsuarioService.class
+cl\duoc\usuarioev\exception\GlobalExceptionHandler.class
+cl\duoc\usuarioev\model\Usuarios.class
+cl\duoc\usuarioev\controller\UsuarioController.class
+cl\duoc\usuarioev\exception\ResourceNotFoundException.class
+cl\duoc\usuarioev\mapper\UsuarioMapper.class
+cl\duoc\usuarioev\repository\UsuarioRepository.class
+cl\duoc\usuarioev\dto\UpdateUsuarioRequest.class
+cl\duoc\usuarioev\UsuarioevApplication.class
+cl\duoc\usuarioev\dto\CreateUsuarioRequest.class
