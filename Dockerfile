@@ -1,9 +1,19 @@
+# Etapa 1: build con Maven Wrapper
+FROM eclipse-temurin:25-jdk AS build
+WORKDIR /app
+
+COPY .mvn/ .mvn/
+COPY mvnw pom.xml ./
+RUN chmod +x mvnw && ./mvnw dependency:go-offline -B
+
+COPY src ./src
+RUN ./mvnw clean package -DskipTests -B
+
+# Etapa 2: runtime liviano
 FROM eclipse-temurin:25-jre AS runtime
 WORKDIR /app
 
-# Expect the application JAR to be built locally (run `./mvnw clean package`)
-# and present in `target/`. Docker will just package the runtime image.
-COPY target/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 

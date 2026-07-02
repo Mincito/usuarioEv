@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 @Entity
 @Table(name = "tabla_usuarios")
@@ -25,8 +27,9 @@ public class Usuarios {
     @Column(name = "contrasena", nullable = false, length = 100)
     private String contrasena;
 
-    @Column(name = "rol", nullable = false, length = 20)
-    private String rol;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rol", nullable = false, length = 20) // ADMIN, PESCADOR, COMPRADOR
+    private UsuarioRol rol;
 
     @Column(name = "telefono", nullable = false, length = 10)
     private String telefono;
@@ -37,8 +40,7 @@ public class Usuarios {
     public Usuarios() {
     }
 
-
-    public Usuarios(int id, String nombre, String correo, String contrasena, String rol, String telefono,
+    public Usuarios(int id, String nombre, String correo, String contrasena, UsuarioRol rol, String telefono,
             boolean activo) {
         this.id = id;
         this.nombre = nombre;
@@ -56,7 +58,6 @@ public class Usuarios {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public String getNombre() {
         return nombre;
@@ -82,11 +83,11 @@ public class Usuarios {
         this.contrasena = contrasena;
     }
 
-    public String getRol() {
+    public UsuarioRol getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(UsuarioRol rol) {
         this.rol = rol;
     }
 
@@ -105,4 +106,8 @@ public class Usuarios {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    
+
+    
 }

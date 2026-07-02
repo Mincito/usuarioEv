@@ -1,23 +1,24 @@
 package cl.duoc.usuarioev.dto;
 
+import cl.duoc.usuarioev.model.UsuarioRol;
 import jakarta.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.NotNull;
 
 public record CreateUsuarioRequest(
 
-    @NotBlank(message = "Nombre no puede ser vacío")
+    @NotBlank(message = "El nombre no puede estar vacío")
     String nombre,
 
-    @NotBlank(message = "Correo no puede ser vacío")
+    @NotBlank(message = "El correo no puede estar vacío")
     String correo,
 
-    @NotBlank(message = "Contraseña no puede ser vacía")
+    @NotBlank(message = "La contraseña no puede estar vacía")
     String contrasena,
 
-    @NotBlank(message = "Rol no puede ser vacío")
-    String rol,
+    @NotNull(message = "El rol no puede estar vacío")
+    UsuarioRol rol,
 
-    @NotBlank(message = "Teléfono no puede ser vacío")
+    @NotBlank(message = "El teléfono no puede estar vacío")
     String telefono,
 
     boolean activo

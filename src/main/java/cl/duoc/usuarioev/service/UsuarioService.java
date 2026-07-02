@@ -30,12 +30,15 @@ public class UsuarioService {
         return "Usuario eliminado del sistema!";
     }
     public int totalUsuarios() {
-        return (int) usuarioRepository.count();
+    return usuarioRepository.totalUsuarios();
     }
 
-    //Esto es para encontrar a un usuario por el rol que tenga
     public List<Usuarios> obtenerPorRol(String rol) {
-        return usuarioRepository.findByRol(rol);
+    return usuarioRepository.selectPorRol(rol.toUpperCase());
+    }
+
+    public Usuarios obtenerPorCorreo(String correo) {
+        return usuarioRepository.selectPorCorreo(correo).orElse(null);
     }
 
 }
